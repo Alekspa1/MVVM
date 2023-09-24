@@ -1,7 +1,8 @@
 package com.dragon.mvvm.domain
 
-class GetShopListUseCase {
+class GetShopListUseCase(private val ShopListRepository: ShopListRepository) {
     fun getShopList(): List<ShopItem>{
-        TODO()
+       return ShopListRepository.getShopList()
     }
+
 }

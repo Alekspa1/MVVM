@@ -1,7 +1,7 @@
 package com.dragon.mvvm.domain
 
-class GetItemIdUseCase {
+class GetItemIdUseCase(private val ShopListRepository: ShopListRepository) {
     fun getItemId(id: Int): ShopItem{
-        TODO()
+        return ShopListRepository.getItemId(id)
     }
 }

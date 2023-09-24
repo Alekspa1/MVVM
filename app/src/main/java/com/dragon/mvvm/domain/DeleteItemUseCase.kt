@@ -1,7 +1,7 @@
 package com.dragon.mvvm.domain
 
-class DeleteItemUseCase {
+class DeleteItemUseCase(private val ShopListRepository: ShopListRepository) {
     fun deleteItem(item: ShopItem){
-        TODO()
+        ShopListRepository.deleteItem(item)
     }
 }

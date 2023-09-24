@@ -1,7 +1,8 @@
 package com.dragon.mvvm.domain
 
-class AddItemUseCase {
+class AddItemUseCase(private val ShopListRepository: ShopListRepository) {
     fun addItem(item: ShopItem){
-        TODO()
+        ShopListRepository.addItem(item)
     }
+
 }

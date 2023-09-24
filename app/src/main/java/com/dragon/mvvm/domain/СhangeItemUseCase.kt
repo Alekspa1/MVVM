@@ -1,7 +1,7 @@
 package com.dragon.mvvm.domain
 
-class СhangeItemUseCase {
+class СhangeItemUseCase(private val ShopListRepository: ShopListRepository) {
     fun changeItem(item: ShopItem){
-        TODO()
+        ShopListRepository.changeItem(item)
     }
 }
