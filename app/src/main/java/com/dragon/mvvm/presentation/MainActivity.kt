@@ -12,6 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.dragon.mvvm.data.Const
+import com.dragon.mvvm.data.Const.ADD_ITEM
+import com.dragon.mvvm.data.Const.SET_NAME_SHOPITEM
 
 
 import com.dragon.mvvm.databinding.ActivityMainBinding
@@ -22,28 +25,20 @@ class MainActivity : AppCompatActivity(), ShopListAdapter.OnClickListener, ShopL
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: ShopListAdapter
     private lateinit var viewModel: MainViewModel
-    private lateinit var launcher: ActivityResultLauncher<Intent>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
-        launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-            result: ActivityResult ->
-            if(result.resultCode == RESULT_OK) {
-                val name = result.data?.getStringExtra(SET_NAME_SHOPITEM)
-                val quantity = result.data?.getIntExtra(SET_QUANTITY_SHOPITEM, 0)
-                val id = result.data?.getIntExtra(SET_ID_SHOPITEM, 0)
-                viewModel.changeItem(ShopItem(name!!, quantity!!,true,id!!))
-                Log.d("MyLog", name)
-                Log.d("MyLog", quantity.toString())
-                Log.d("MyLog", id.toString())
-            }
-        }
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel.shopList.observe(this){
             adapter.submitList(it)
+        }
+        binding.imageButton.setOnClickListener {
+            val intent = Intent(this, ActivityShopItem::class.java)
+            intent.putExtra(ADD_ITEM, false)
+            startActivity(intent)
         }
         setRecyclerView()
         setSwipe()
@@ -79,18 +74,15 @@ class MainActivity : AppCompatActivity(), ShopListAdapter.OnClickListener, ShopL
 
     override fun onClick(id: Int) {
         val intent = Intent(this, ActivityShopItem::class.java)
-        intent.putExtra(SET_ID_SHOPITEM, id)
-        launcher.launch(intent)
+        intent.putExtra(Const.SET_ID_SHOPITEM, id)
+        intent.putExtra(ADD_ITEM, true)
+        startActivity(intent)
     }
 
     override fun onLongClick(shopItem: ShopItem) {
         viewModel.changeItem(shopItem)
     }
-    companion object {
-        const val SET_ID_SHOPITEM = "100"
-        const val SET_NAME_SHOPITEM = "101"
-        const val SET_QUANTITY_SHOPITEM = "102"
-    }
+
 
         }
 

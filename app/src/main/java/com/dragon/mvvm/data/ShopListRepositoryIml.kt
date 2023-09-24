@@ -14,11 +14,7 @@ object ShopListRepositoryIml : ShopListRepository {
     private val shopList = sortedSetOf<ShopItem>({ p0, p1 -> p0.id.compareTo(p1.id) })
     private var autoIncrementId = 0
 
-    init {
-        for(i in 0..10000){
-            addItem(ShopItem("name $i", i, Random().nextBoolean()))
-        }
-    }
+
 
     override fun addItem(item: ShopItem) {
         if (item.id == ShopItem.UNDEFINE_ID) {

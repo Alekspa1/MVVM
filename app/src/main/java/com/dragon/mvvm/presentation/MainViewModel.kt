@@ -24,12 +24,11 @@ class MainViewModel: ViewModel() {
     fun deleteItem(item: ShopItem) {
         deleteItemUseCase.deleteItem(item)
     }
-
     fun changeItem(item: ShopItem) {
         val newItem = item.copy(enabled = !item.enabled)
         changeItemUseCase.changeItem(newItem)
     }
-    fun getItemId(id:Int): ShopItem?{
+    private fun getItemId(id:Int): ShopItem?{
         return getItemId.getItemId(id)
     }
 }
