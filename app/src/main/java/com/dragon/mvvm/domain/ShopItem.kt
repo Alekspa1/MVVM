@@ -1,8 +1,13 @@
 package com.dragon.mvvm.domain
 
 data class ShopItem(
-    val id: Int,
     val name: String,
     val count: Int,
-    val enabled: Boolean
+    val enabled: Boolean,
+    var id: Int = UNDEFINE_ID
 )
+{
+    companion object{
+        const val UNDEFINE_ID = -1
+    }
+}
