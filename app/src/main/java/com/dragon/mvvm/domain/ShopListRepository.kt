@@ -1,5 +1,8 @@
 package com.dragon.mvvm.domain
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+
 interface ShopListRepository {
     fun addItem(item: ShopItem)
 
@@ -9,6 +12,6 @@ interface ShopListRepository {
 
     fun getItemId(id: Int): ShopItem?
 
-    fun getShopList(): List<ShopItem>
+    fun getShopList(): LiveData<List<ShopItem>>
 
 }
