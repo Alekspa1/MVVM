@@ -12,6 +12,6 @@ interface ShopListRepository {
 
     fun getItemId(id: Int): ShopItem?
 
-    fun getShopList(): LiveData<List<ShopItem>>
+    fun getShopList(): MutableLiveData<List<ShopItem>>
 
 }

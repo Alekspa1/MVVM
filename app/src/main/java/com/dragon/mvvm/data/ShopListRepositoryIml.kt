@@ -41,7 +41,7 @@ object ShopListRepositoryIml : ShopListRepository {
 
     }
 
-    override fun getShopList(): LiveData<List<ShopItem>> {
+    override fun getShopList(): MutableLiveData<List<ShopItem>> {
         return shopListLD
     }
     private fun update(){
