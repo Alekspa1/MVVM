@@ -1,10 +1,11 @@
 package com.dragon.mvvm.data
 
 
-import androidx.lifecycle.LiveData
+
 import androidx.lifecycle.MutableLiveData
 import com.dragon.mvvm.domain.ShopItem
 import com.dragon.mvvm.domain.ShopListRepository
+import java.util.Random
 
 
 object ShopListRepositoryIml : ShopListRepository {
@@ -13,8 +14,8 @@ object ShopListRepositoryIml : ShopListRepository {
     private var autoIncrementId = 0
 
     init {
-        for(i in 0..10){
-            addItem(ShopItem("name $i", i, true))
+        for(i in 0..50){
+            addItem(ShopItem("name $i", i, Random().nextBoolean()))
         }
     }
 
@@ -42,12 +43,13 @@ object ShopListRepositoryIml : ShopListRepository {
     }
 
     override fun getShopList(): MutableLiveData<List<ShopItem>> {
+
         return shopListLD
     }
     private fun update(){
-        shopListLD.value = shopList.toList()
-
+        shopListLD.value = shopList
     }
+
 
 
 
