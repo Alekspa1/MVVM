@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity(), ShopListAdapter.OnClickListener, ShopL
     }
 
     override fun onLongClick(shopItem: ShopItem) {
-        viewModel.deleteItem(shopItem)
+        viewModel.changeItem(shopItem)
     }
     companion object {
         const val SET_ID_SHOPITEM = "100"
