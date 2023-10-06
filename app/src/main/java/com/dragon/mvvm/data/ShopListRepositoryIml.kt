@@ -10,11 +10,11 @@ import java.util.Random
 
 object ShopListRepositoryIml : ShopListRepository {
     private val shopListLD = MutableLiveData<List<ShopItem>>()
-    private val shopList = arrayListOf<ShopItem>()
+    private val shopList = sortedSetOf<ShopItem>({ p0, p1 -> p0.id.compareTo(p1.id) })
     private var autoIncrementId = 0
 
     init {
-        for(i in 0..50){
+        for(i in 0..10000){
             addItem(ShopItem("name $i", i, Random().nextBoolean()))
         }
     }
@@ -47,7 +47,7 @@ object ShopListRepositoryIml : ShopListRepository {
         return shopListLD
     }
     private fun update(){
-        shopListLD.value = shopList
+        shopListLD.value = shopList.toList()
     }
 
 
