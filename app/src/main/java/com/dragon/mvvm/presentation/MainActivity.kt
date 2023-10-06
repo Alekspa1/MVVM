@@ -1,6 +1,7 @@
 package com.dragon.mvvm.presentation
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
@@ -58,15 +59,18 @@ class MainActivity : AppCompatActivity(), ShopListAdapter.OnClickListener, ShopL
         rcView.adapter = adapter
     }
 
-    override fun onClick(shopItem: ShopItem) {
-        viewModel.changeItem(shopItem)
+    override fun onClick(id: Int) {
+        val intent = Intent(this, ActivityShopItem::class.java)
+        intent.putExtra(SET_ID_SHOPITEM, id)
+        startActivity(intent)
     }
 
     override fun onLongClick(shopItem: ShopItem) {
         viewModel.deleteItem(shopItem)
     }
-
-
+    companion object {
+        const val SET_ID_SHOPITEM = "100"
+    }
 
         }
 

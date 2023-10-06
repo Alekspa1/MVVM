@@ -42,7 +42,7 @@ class ShopListAdapter(
                 }
             }
             itemView.setOnClickListener {
-                onClickListener.onClick(shopItem)
+                onClickListener.onClick(shopItem.id)
             }
             itemView.setOnLongClickListener {
                 onLongClickListener.onLongClick(shopItem)
@@ -67,7 +67,7 @@ class ShopListAdapter(
     }
 
     interface OnClickListener {
-        fun onClick(shopItem: ShopItem)
+        fun onClick(id: Int)
     }
 
     interface OnLongClickListener {
