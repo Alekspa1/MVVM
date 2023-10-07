@@ -2,6 +2,7 @@ package com.dragon.mvvm.domain
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import java.io.Serializable
 
 interface ShopListRepository {
     fun addItem(item: ShopItem)

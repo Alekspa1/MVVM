@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dragon.mvvm.R
-import com.dragon.mvvm.databinding.ShopListItemBinding
-import com.dragon.mvvm.databinding.TestBinding
+import com.dragon.mvvm.databinding.ShopListItemEnabledBinding
+import com.dragon.mvvm.databinding.ShopListItemDisabledBinding
 import com.dragon.mvvm.domain.ShopItem
 
 class ShopListAdapter(
@@ -17,12 +17,12 @@ class ShopListAdapter(
 
     class Holder(val item: View) : RecyclerView.ViewHolder(item) {
 
-        private fun act(): ShopListItemBinding {
-            return ShopListItemBinding.bind(itemView)
+        private fun act(): ShopListItemEnabledBinding {
+            return ShopListItemEnabledBinding.bind(itemView)
         }
 
-        private fun test(): TestBinding {
-            return TestBinding.bind(itemView)
+        private fun test(): ShopListItemDisabledBinding {
+            return ShopListItemDisabledBinding.bind(itemView)
         }
 
         fun bind(
@@ -58,8 +58,8 @@ class ShopListAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (getItem(position).enabled) R.layout.shop_list_item
-        else R.layout.test
+        return if (getItem(position).enabled) R.layout.shop_list_item_enabled
+        else R.layout.shop_list_item_disabled
     } // Возвращаем вью в зависимости от условия
 
     override fun onBindViewHolder(holder: Holder, position: Int) {

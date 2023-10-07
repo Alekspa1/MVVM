@@ -5,6 +5,7 @@ package com.dragon.mvvm.data
 import androidx.lifecycle.MutableLiveData
 import com.dragon.mvvm.domain.ShopItem
 import com.dragon.mvvm.domain.ShopListRepository
+import java.io.Serializable
 import java.util.Random
 
 
