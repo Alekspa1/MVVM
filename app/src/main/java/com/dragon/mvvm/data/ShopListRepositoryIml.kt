@@ -13,6 +13,12 @@ object ShopListRepositoryIml : ShopListRepository {
     private val shopListLD = MutableLiveData<List<ShopItem>>()
     private val shopList = sortedSetOf<ShopItem>({ p0, p1 -> p0.id.compareTo(p1.id) })
     private var autoIncrementId = 0
+    init {
+        for(i in 0..5){
+            addItem(ShopItem("name $i", i, Random().nextBoolean()))
+
+        }
+    }
 
 
 

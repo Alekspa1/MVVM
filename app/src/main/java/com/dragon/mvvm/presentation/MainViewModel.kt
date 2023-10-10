@@ -15,7 +15,6 @@ class MainViewModel: ViewModel() {
     private val getShopListUseCase = GetShopListUseCase(repository)
     private val deleteItemUseCase = DeleteItemUseCase(repository)
     private val changeItemUseCase = ChangeItemUseCase(repository)
-    private val getItemId = GetItemIdUseCase(repository)
 
 
     val shopList = getShopListUseCase.getShopList()
@@ -27,9 +26,6 @@ class MainViewModel: ViewModel() {
     fun changeItem(item: ShopItem) {
         val newItem = item.copy(enabled = !item.enabled)
         changeItemUseCase.changeItem(newItem)
-    }
-    private fun getItemId(id:Int): ShopItem?{
-        return getItemId.getItemId(id)
     }
 }
 

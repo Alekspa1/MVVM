@@ -1,27 +1,18 @@
 package com.dragon.mvvm.presentation
 
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.ViewModelProvider
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dragon.mvvm.data.Const
-import com.dragon.mvvm.data.Const.ADD_ITEM
-import com.dragon.mvvm.data.Const.SET_NAME_SHOPITEM
-
-
 import com.dragon.mvvm.databinding.ActivityMainBinding
 import com.dragon.mvvm.domain.ShopItem
 
 
-class MainActivity : AppCompatActivity(), ShopListAdapter.OnClickListener, ShopListAdapter.OnLongClickListener {
+class MainActivity : AppCompatActivity(), ShopListAdapter.OnClickListener,
+    ShopListAdapter.OnLongClickListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: ShopListAdapter
     private lateinit var viewModel: MainViewModel
@@ -31,13 +22,12 @@ class MainActivity : AppCompatActivity(), ShopListAdapter.OnClickListener, ShopL
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        viewModel.shopList.observe(this){
+        viewModel = MainViewModel()
+        viewModel.shopList.observe(this) {
             adapter.submitList(it)
         }
         binding.imageButton.setOnClickListener {
-            val intent = Intent(this, ActivityShopItem::class.java)
-            intent.putExtra(ADD_ITEM, false)
+            val intent = Const.addShopItem(this)
             startActivity(intent)
         }
         setRecyclerView()
@@ -73,9 +63,7 @@ class MainActivity : AppCompatActivity(), ShopListAdapter.OnClickListener, ShopL
     }
 
     override fun onClick(id: Int) {
-        val intent = Intent(this, ActivityShopItem::class.java)
-        intent.putExtra(Const.SET_ID_SHOPITEM, id)
-        intent.putExtra(ADD_ITEM, true)
+        val intent = Const.editShopItem(this, id)
         startActivity(intent)
     }
 
@@ -84,5 +72,5 @@ class MainActivity : AppCompatActivity(), ShopListAdapter.OnClickListener, ShopL
     }
 
 
-        }
+}
 
